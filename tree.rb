@@ -3,14 +3,17 @@
 # the special gsub for <li> children but not specifically why it's happening.
 # 2) Spacing error on some of the other :text fields. Specifically the 'outer-div'
 
+# Require relatives
+require_relative('node_renderer.rb')
+require_relative('tree_searcher.rb')
+
 # Create a DOM Tree Class
 
 # First thing is to create the Node struct
 Node = Struct.new(:name, :text, :classes, :id, :children, :parent)
 
 class DOMTree
-	attr_reader :file
-	attr_accessor :head
+	attr_reader :file, :head
 
 	def initialize(file_name)
 		# gsub(/<!.*?>/, "") Removes <! doctype > from the document
