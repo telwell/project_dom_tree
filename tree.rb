@@ -6,6 +6,7 @@
 # Require relatives
 require_relative('node_renderer.rb')
 require_relative('tree_searcher.rb')
+require_relative('tree_loader.rb')
 
 # Create a DOM Tree Class
 
@@ -19,13 +20,9 @@ class DOMTree
 		# gsub(/<!.*?>/, "") Removes <! doctype > from the document
 		# gsub(/>\s*</,"><") Removes all the whitespace from between > & < characters
 		# gsub(/\n/, "") Removes the newline characters from the document
-		@file = load(file_name).read.gsub(/\n/, "").gsub(/>\s*</,"><").gsub(/<!.*?>/, "")
+		@file = TreeLoader.new(file_name).file
 		@head = Node.new("Document", @file)
 		create_tree
-	end
-
-	def load(file_name)
-		File.open(file_name, "r")
 	end
 
 	# Recursively get the children for each node. Returns nil
