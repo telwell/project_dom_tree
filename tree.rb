@@ -11,7 +11,7 @@ require_relative('tree_loader.rb')
 # Create a DOM Tree Class
 
 # First thing is to create the Node struct
-Node = Struct.new(:name, :text, :classes, :id, :children, :parent)
+Node = Struct.new(:name, :text, :class, :id, :children, :parent)
 
 class DOMTree
 	attr_reader :file, :head

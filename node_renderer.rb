@@ -53,20 +53,20 @@ class NodeRenderer
 	end
 
 	# Creates a string of output to be sent to the render function.
-	# info[2] has a hash of :name, :text, :classes, and :id
+	# info[2] has a hash of :name, :text, :class, and :id
 	def create_output(info)
 		output = "Info for #{info[2][:name]} node:\n"
 		output += "Text: #{info[2][:text]}\n"
-		output += "Classes: #{info[2][:classes]}\n"
+		output += "Classes: #{info[2][:class]}\n"
 		output += "ID: #{info[2][:id]}\n"
 		output += "Sub node count: #{info[1]}\n"
 		output += "Sub node info: #{info[0]}"
 	end
 
 	# Returns a hash of all of the particular node's data
-	# (name, text, classes, id)
+	# (name, text, class, id)
 	def get_node_info(node)
-		args = [:name, :text, :classes, :id]
+		args = [:name, :text, :class, :id]
 		info = {}
 		args.each{|arg| info[arg] = (node[arg] && !node[arg].empty? ? node[arg] : "none")}
 		info

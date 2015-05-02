@@ -7,7 +7,7 @@ class TreeSearcher
 		@head = tree.head
 	end
 
-	# Search through the tree by a particular attribute (:name, :text, :classes, :id)
+	# Search through the tree by a particular attribute (:name, :text, :class, :id)
 	# and return a collection of nodes which meet these attributes.
 	def search_by(attribute, search)
 		final = find_matches(attribute, search)
@@ -39,6 +39,4 @@ class TreeSearcher
 		end
 		matches
 	end
-
-	# TODO: This still leaves the search_children and the search_ancestors searches to complete.
 end
