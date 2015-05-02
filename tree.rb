@@ -21,6 +21,7 @@ class DOMTree
 		# gsub(/\n/, "") Removes the newline characters from the document
 		@file = load(file_name).read.gsub(/\n/, "").gsub(/>\s*</,"><").gsub(/<!.*?>/, "")
 		@head = Node.new("Document", @file)
+		create_tree
 	end
 
 	def load(file_name)
