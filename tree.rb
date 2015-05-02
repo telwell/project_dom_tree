@@ -44,8 +44,8 @@ class DOMTree
 		while has_children?(node.text)
 			first_tag = get_first_tag(node.text)
 			child_name = get_name(first_tag)
-			child_class = (get_class(first_tag) == false ? nil :  get_class(first_tag))
-			child_id = (get_id(first_tag) == false ? nil :  get_id(first_tag))
+			child_class = get_class(first_tag)
+			child_id = get_id(first_tag)
 			child_text = (child_name == "li" ? get_inner_HTML(node.text, child_name, true) : get_inner_HTML(node.text, child_name))
 			child_node = Node.new(child_name, child_text, child_class, child_id, nil, node)
 			node.children << child_node
@@ -98,7 +98,7 @@ class DOMTree
 	end
 
 	# Function will take an argument (steralized from get_first_tag) and return
-	# the class of the tag if it has one. Otherwise will return false.
+	# the class of the tag if it has one. Otherwise will return nil.
 	def get_id(input)
 		# Trying to account for two situations. 1) Where double-quotes OR single-quotes 
 		# are used. 2) Where there is a space after the ID (i.e. id ="foo"). Should build
@@ -106,7 +106,7 @@ class DOMTree
 		matches = input.match(/id="(.*?)"|id\s="(.*?)"|id='(.*?)'|id\s='(.*?)'/)
 		# Since I have contingency plans some of these matches will return nil. I only want the 
 		# one that has a value.
-		return false if matches.nil?
+		return nil if matches.nil?
 		matches.captures.each do |match|
 			return match if !match.nil?
 		end
@@ -116,7 +116,7 @@ class DOMTree
 		# Almost the same as get_id above.
 		matches = input.match(/class="(.*?)"|class\s="(.*?)"|class='(.*?)'|class\s='(.*?)'/)
 		# Same as above.
-		return false if matches.nil?
+		return nil if matches.nil?
 		matches.captures.each do |match|
 			return match if !match.nil?
 		end
